@@ -24,6 +24,7 @@ defmodule CoconutWeb.Router do
     pipe_through :api
 
     get "/countries", CountryController, :index
+    get "/health", HealthCheckController, :index
   end
 
   # Enables LiveDashboard only for development

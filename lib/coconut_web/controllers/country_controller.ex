@@ -6,6 +6,11 @@ defmodule CoconutWeb.CountryController do
   ]
 
   def index(conn, _params) do
-    json(conn, %{status: "ok", data: @countries})
+    response = %{
+      status: "ok",
+      data: @countries
+    }
+
+    render(conn, "index.json", response: response)
   end
 end
