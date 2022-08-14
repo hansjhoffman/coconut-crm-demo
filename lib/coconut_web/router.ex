@@ -20,10 +20,11 @@ defmodule CoconutWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", CoconutWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", CoconutWeb do
+    pipe_through :api
+
+    get "/countries", CountryController, :index
+  end
 
   # Enables LiveDashboard only for development
   #
