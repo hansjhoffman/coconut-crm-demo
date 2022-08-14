@@ -32,3 +32,8 @@ coconut-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Env
+.envrc
+
+# Nix
+.nix*
