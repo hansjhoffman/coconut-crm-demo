@@ -1,0 +1,15 @@
+{
+  "name": "coconut",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "format": "yarn prettier --write '**/*.{css,js,ts}'",
+    "lint": "yarn eslint '**/*.{js,ts}' --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
+  }
+}
