@@ -13,7 +13,7 @@ class FlatfileImporter extends HTMLElement {
   constructor() {
     super();
 
-    this.token = null;
+    this._token = "";
 
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -31,7 +31,7 @@ class FlatfileImporter extends HTMLElement {
 
     switch (attrName) {
       case "data-token":
-        this.token = newVal;
+        this._token = newVal;
         break;
       default:
         break;
@@ -46,7 +46,7 @@ class FlatfileImporter extends HTMLElement {
   }
 
   launch() {
-    const importer = flatfileImporter(this.token);
+    const importer = flatfileImporter(this._token);
 
     importer.on("init", ({ batchId }) => {
       console.log(
@@ -68,10 +68,10 @@ class FlatfileImporter extends HTMLElement {
 
     importer.on("complete", async (payload) => {
       const data = await payload.data();
-      const deserialized = JSON.stringify(data, null, 4);
+      const serialized = JSON.stringify(data, null, 4);
 
       console.group("%c" + "⥤ SDK Output: 👇", "background-color: #4a3fd2; padding: 4px;");
-      console.log("%c" + deserialized, "background-color: #4a3fd2; padding: 4px;");
+      console.log("%c" + serialized, "background-color: #4a3fd2; padding: 4px;");
     });
 
     importer.launch();

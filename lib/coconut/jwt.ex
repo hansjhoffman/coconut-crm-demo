@@ -5,15 +5,21 @@ defmodule Coconut.Jwt do
 
   # SDK v2
   # def create(private_key, %{user: user, org: org}) do
-  #   jwk = %{"kty" => "oct", "k" => private_key}
+  #   jwk = %{
+  #     "k" => private_key,
+  #     "kty" => "oct"
+  #   }
 
-  #   jws = %{"alg" => "HS256"}
+  #   jws = %{
+  #     "alg" => "HS256",
+  #     "typ" => "JWT"
+  #   }
 
   #   jwt = %{
   #     "iss" => "Coconut Shop",
   #     "exp" =>
   #       DateTime.utc_now()
-  #       |> DateTime.add(1 * 60, :second)
+  #       |> DateTime.add(3600, :second)
   #       |> DateTime.to_unix(),
   #     "user" => %{"email" => user.email},
   #     "org" => %{"name" => org.name}
@@ -24,9 +30,15 @@ defmodule Coconut.Jwt do
 
   # SDK v1
   def create(private_key, embed_id, user_email) do
-    jwk = %{"kty" => "oct", "k" => private_key}
+    jwk = %{
+      "k" => private_key,
+      "kty" => "oct"
+    }
 
-    jws = %{"alg" => "HS256"}
+    jws = %{
+      "alg" => "HS256",
+      "typ" => "JWT"
+    }
 
     jwt = %{
       "iss" => "Coconut Shop",
@@ -34,8 +46,8 @@ defmodule Coconut.Jwt do
         DateTime.utc_now()
         |> DateTime.add(3600, :second)
         |> DateTime.to_unix(),
-      "sub" => %{"email" => user_email},
-      "embed" => %{"name" => embed_id}
+      "sub" => user_email,
+      "embed" => embed_id
     }
 
     JOSE.JWT.sign(jwk, jws, jwt) |> JOSE.JWS.compact() |> elem(1)
