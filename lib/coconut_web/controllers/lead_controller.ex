@@ -1,4 +1,4 @@
-defmodule CoconutWeb.PageController do
+defmodule CoconutWeb.LeadController do
   use CoconutWeb, :controller
 
   # private_key = Application.get_env(:flatfile_secret_1)

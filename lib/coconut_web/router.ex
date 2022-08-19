@@ -17,7 +17,7 @@ defmodule CoconutWeb.Router do
   scope "/", CoconutWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", LeadController, :index
   end
 
   scope "/api", CoconutWeb do
