@@ -4,14 +4,15 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="csrf-token" content={csrf_token_value()}>
-    <%= live_title_tag assigns[:page_title] || "Coconut", suffix: " · Demo" %>
+    <meta name="csrf-token" content={csrf_token_value()} />
+    <%= live_title_tag(assigns[:page_title] || "Coconut", suffix: " · Demo") %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")} />
     <script
       defer
       phx-track-static
       type="text/javascript"
-      src={Routes.static_path(@conn, "/assets/app.js")}>
+      src={Routes.static_path(@conn, "/assets/app.js")}
+    >
     </script>
   </head>
 
@@ -22,7 +23,7 @@
           <ul>
             <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
             <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+              <li><%= link("LiveDashboard", to: Routes.live_dashboard_path(@conn, :home)) %></li>
             <% end %>
           </ul>
         </nav>
