@@ -14,10 +14,21 @@ defmodule CoconutWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    # plug :ensure_authenticated_user
+  end
+
+  scope "/", CoconutWeb do
+    pipe_through [:browser, :auth]
+
+    get "/", LeadController, :index
+    post "/auth/flatfile", JwtController, :create
+  end
+
   scope "/", CoconutWeb do
     pipe_through :browser
 
-    get "/", LeadController, :index
+    resources "/auth/login", LoginController, only: [:index, :create]
   end
 
   scope "/api", CoconutWeb do

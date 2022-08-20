@@ -8,7 +8,7 @@ import { LiveSocket } from "phoenix_live_view";
 
 import topbar from "../vendor/topbar";
 import "./devs";
-import "./importer";
+import { importLeads } from "./leads";
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 const liveSocket = new LiveSocket("/live", Socket, {
@@ -30,3 +30,8 @@ liveSocket.connect();
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
+
+const leadsBtnEl = document.getElementById("leads-btn");
+if (leadsBtnEl !== null) {
+  leadsBtnEl.addEventListener("click", () => importLeads(csrfToken));
+}

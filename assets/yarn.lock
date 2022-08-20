@@ -17,10 +17,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@flatfile/sdk@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@flatfile/sdk/-/sdk-1.0.7.tgz#51610b197485eedfba11f6e300227c276f6b7d5d"
-  integrity sha512-o+KzU24csr70riSWldwDG46K6MJOgy2BxxKLclxrNfew9BFwTmc0kBzsz6f6+YHVxyKVL/dkdffIO+0/LofAKw==
+"@flatfile/sdk@^2":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@flatfile/sdk/-/sdk-2.0.1.tgz#065f31a57bc3eeebe14fd442fd9dd7cf32e7c632"
+  integrity sha512-e2bRDJyEpY3ZjuNznZXEfS2IUqA6NVm6B2vyqxqZBn6mtWMQHE327J09sIuIbuJZyHyS8fdOoa5SSgDl0Mj81g==
   dependencies:
     eventemitter3 "^4.0.7"
     graphql "^15.5.0"
