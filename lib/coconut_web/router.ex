@@ -22,7 +22,9 @@ defmodule CoconutWeb.Router do
     pipe_through [:browser, :auth]
 
     get "/", LeadController, :index
-    post "/auth/flatfile", JwtController, :create
+    post "/flatfile/auth", JwtController, :create
+    # Need some way to pass secret in to prevent unauthenticated posts
+    # post "/flatfile/webhook", WebhookController, :create
   end
 
   scope "/", CoconutWeb do

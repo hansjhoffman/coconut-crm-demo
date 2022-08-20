@@ -1,8 +1,10 @@
 import { Flatfile } from "@flatfile/sdk";
 
+const EMBED_ID = "";
+
 export const importLeads = (csrfToken) => {
   Flatfile.requestDataFromUser({
-    embedId: "embed_id",
+    embedId: EMBED_ID,
     token: async () => {
       const response = await fetch("/auth/flatfile", {
         method: "POST",
@@ -11,7 +13,7 @@ export const importLeads = (csrfToken) => {
           "X-CSRF-Token": csrfToken,
         },
         body: JSON.stringify({
-          embedId: "embedId",
+          embedId: EMBED_ID,
         }),
       });
       const { token } = await response.json();
