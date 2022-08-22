@@ -28,6 +28,9 @@ coconut-*.tar
 # Ignore digested assets cache.
 /priv/static/cache_manifest.json
 
+# Keep local dev certs secret
+/priv/cert/
+
 # In case you use Node.js/npm, you want to ignore these.
 npm-debug.log
 yarn-error.log

@@ -49,8 +49,10 @@ defmodule Coconut.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:credo, "~> 1.6"},
-      {:jose, "~> 1.11"}
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:jose, "~> 1.11"},
+      {:ueberauth_google, "~> 0.10"},
+      {:ex_machina, "~> 2.7.0", only: :test}
     ]
   end
 
@@ -62,7 +64,7 @@ defmodule Coconut.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup"],
+      setup: ["deps.get", "ecto.setup", "phx.gen.cert"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],

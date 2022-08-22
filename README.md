@@ -1,19 +1,18 @@
-# Coconut
+# Coconut Shop Demo
 
-To start your Phoenix server:
+Demo app for Flatfile
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Setup
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+1. Install [Nix](https://nixos.wiki/wiki/Nix_Installation_Guide) & [direnv](https://direnv.net/docs/installation.html)
+2. Run `docker-compose up -d` in root directory to run containers
+3. Run `mix setup` to configure database and create SSL certs
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Running
 
-## Learn more
+1. Use `make run` to start server and visit [`localhost:4000`](https://localhost:4000) from your browser.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+## Tests
+
+1. Run with `make test`
+

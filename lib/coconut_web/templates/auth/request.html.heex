@@ -1,0 +1,42 @@
+<section>
+  <h1>Login</h1>
+
+  <%= form_tag @callback_url, method: "post" do %>
+    <fieldset>
+      <legend>Authentication Information</legend>
+
+      <label for="email">Email</label>
+      <input id="email" name="email" required type="email" value={@conn.params["email"]} />
+
+      <label for="password">Password</label>
+      <input id="password" name="password" required type="password" />
+
+      <label for="password_confirmation">Confirm Password</label>
+      <input id="password_confirmation" name="password_confirmation" required type="password" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Additional Information</legend>
+
+      <label for="first_name">First Name</label>
+      <input id="first_name" name="first_name" type="text" value={@conn.params["first_name"]} />
+
+      <label for="last_name">Last Name</label>
+      <input id="last_name" name="last_name" type="text" value={@conn.params["last_name"]} />
+
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" value={@conn.params["username"]} />
+
+      <label for="phone">Phone</label>
+      <input id="phone" name="phone" type="tel" value={@conn.params["phone"]} />
+
+      <label for="location">Location</label>
+      <input id="location" name="location" type="text" value={@conn.params["location"]} />
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description"><%= @conn.params["description"] %></textarea>
+    </fieldset>
+
+    <input class="" type="submit" value="Login" />
+  <% end %>
+</section>

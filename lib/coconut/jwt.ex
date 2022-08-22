@@ -3,6 +3,8 @@ defmodule Coconut.Jwt do
   Generate JWTs for Flatfile importer.
   """
 
+  @max_age 60 * 60
+
   def create(private_key, params) do
     jwk = %{
       "k" => private_key,
@@ -18,7 +20,7 @@ defmodule Coconut.Jwt do
       "iss" => "Coconut Shop",
       "exp" =>
         DateTime.utc_now()
-        |> DateTime.add(3600, :second)
+        |> DateTime.add(@max_age, :second)
         |> DateTime.to_unix(),
       "user" => params.user,
       "org" => params.org,

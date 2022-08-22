@@ -1,0 +1,8 @@
+<section>
+  <h1>Some cool graphic/animation</h1>
+  <%= button("Sign in with Google",
+    to: Routes.auth_path(@conn, :request, :google),
+    method: :get,
+    class: ""
+  ) %>
+</section>

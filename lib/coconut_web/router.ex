@@ -1,6 +1,8 @@
 defmodule CoconutWeb.Router do
   use CoconutWeb, :router
 
+  import CoconutWeb.UserAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,7 @@ defmodule CoconutWeb.Router do
     plug :put_root_layout, {CoconutWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_user
   end
 
   pipeline :api do
@@ -15,7 +18,7 @@ defmodule CoconutWeb.Router do
   end
 
   pipeline :auth do
-    # plug :ensure_authenticated_user
+    plug :ensure_authenticated_user
   end
 
   scope "/", CoconutWeb do
@@ -27,10 +30,14 @@ defmodule CoconutWeb.Router do
     # post "/flatfile/webhook", WebhookController, :create
   end
 
-  scope "/", CoconutWeb do
+  scope "/auth", CoconutWeb do
     pipe_through :browser
 
-    resources "/auth/login", LoginController, only: [:index, :create]
+    get "/", AuthController, :index
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    post "/:provider/callback", AuthController, :callback
+    delete "/logout", AuthController, :delete
   end
 
   scope "/api", CoconutWeb do
