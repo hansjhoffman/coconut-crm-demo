@@ -1,7 +1,7 @@
 # Build configuration
 # -------------------
 
-APP_NAME = `grep -Eo 'app: :\w*' mix.exs | cut -d ':' -f 3`
+APP_NAME = `node -p "require('./package.json').name"`
 GIT_BRANCH=`git rev-parse --abbrev-ref HEAD`
 GIT_REVISION = `git rev-parse HEAD`
 
@@ -31,43 +31,28 @@ targets:
 	@printf "\033[34m---------------------------------------------------------------\033[0m\n"
 	@perl -nle'print $& if m{^[a-zA-Z_-]+:.*?## .*$$}' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-22s\033[0m %s\n", $$1, $$2}'
 
-# Build targets
-# -------------
-
-.PHONY: build
-build: ## Make a production build
-	MIX_ENV=prod mix release
-
 # Development targets
 # -------------------
 
-.PHONY: clean
-clean: ## Remove build artifacts
-	rm -rf _build
-
 .PHONY: deps
 deps: ## Install dependencies
-	mix deps.get --force
-
-.PHONY: run
-run: ## Run the api server
-	iex -S mix phx.server
-
-.PHONY: test
-test: ## Test code
-	mix test
+	yarn
 
 # Check, lint and format targets
 # ------------------------------
 
 .PHONY: format
-format: ## Formatl all the file
-	mix format
+format: ## Formatl all the files
+	yarn prettier --write '**/*.{css,js,ts}'
 
 .PHONY: format-check
 format-check:
-	mix format --check-formatted
+	yarn prettier --check '**/*.{css,js,ts}'
 
 .PHONY: lint
-lint: ## Lint all the file
-	mix credo
+lint: ## Lint all the files
+	yarn eslint 'js/**/*.{js,ts}'
+
+.PHONY: lint-fix
+lint-fix: ## Lint all the files
+	yarn eslint 'js/**/*.{js,ts}' --fix
