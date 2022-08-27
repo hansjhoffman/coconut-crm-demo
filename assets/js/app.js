@@ -31,7 +31,4 @@ liveSocket.connect();
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
 
-const leadsBtnEl = document.getElementById("leads-btn");
-if (leadsBtnEl !== null) {
-  leadsBtnEl.addEventListener("click", () => importLeads(csrfToken));
-}
+document.getElementById("leads-btn")?.addEventListener("click", () => importLeads(csrfToken));

@@ -5,11 +5,8 @@ defmodule Coconut.Jwt do
 
   @max_age 60 * 60
 
-  def create(private_key, params) do
-    jwk = %{
-      "k" => private_key,
-      "kty" => "oct"
-    }
+  def create(meta, params) do
+    jwk = JOSE.JWK.from_oct(meta.private_key)
 
     jws = %{
       "alg" => "HS256",
@@ -25,7 +22,7 @@ defmodule Coconut.Jwt do
       "user" => params.user,
       "org" => params.org,
       "env" => params.env,
-      "embed" => params.embed_id
+      "embed" => meta.embed_id
     }
 
     JOSE.JWT.sign(jwk, jws, jwt) |> JOSE.JWS.compact() |> elem(1)

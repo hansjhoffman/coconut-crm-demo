@@ -25,6 +25,11 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_secret: {System, :get_env, ["GOOGLE_CLIENT_SECRET"]},
   redirect_url: {System, :get_env, ["GOOGLE_REDIRECT_URI"]}
 
+# Configure Flatfile embeds
+config :coconut,
+  ff_leads_pk: System.fetch_env!("FLATFILE_PRIVATE_KEY_LEADS"),
+  ff_products_pk: System.fetch_env!("FLATFILE_PRIVATE_KEY_PRODUCTS")
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||
