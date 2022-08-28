@@ -1,4 +1,10 @@
 <section>
   <h1 class="text-slate-800">Home</h1>
-  <button id="leads-btn">Import Leads</button>
+  <button id="leads-importer">Import Leads</button>
+
+  <%= if length(@leads) == 0 do %>
+    <p>Show empty state</p>
+  <% else %>
+    <p>Show all leads</p>
+  <% end %>
 </section>

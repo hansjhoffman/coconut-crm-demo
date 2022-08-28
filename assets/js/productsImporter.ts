@@ -1,8 +1,10 @@
 import { Flatfile } from "@flatfile/sdk";
 
-const EMBED_ID: string = "e0c14de2-27d9-4477-b6b7-8605085b8039";
+import { prettyPrint } from "./utils";
 
-export const importLeads = (csrfToken: string) => {
+const EMBED_ID: string = "bafedf6e-0133-4155-bcbe-e4d017aaf8ec";
+
+export default (csrfToken: string) => {
   Flatfile.requestDataFromUser({
     embedId: EMBED_ID,
     token: async () => {
@@ -28,21 +30,18 @@ export const importLeads = (csrfToken: string) => {
       submitCompleteText: "Custom submit text ...",
     },
     onInit: ({ meta }): void => {
-      console.log(
-        `%c⥤ Batch ${meta.batchId} has been initialized.`,
-        "background-color: #4a3fd2; padding: 4px;",
-      );
+      prettyPrint("info", `Batch ${meta.batchId} has been initialized.`);
     },
     onData: (chunk, next): void => {
-      console.log(`%c⥤ Chunk: ${chunk.records}.`, "background-color: #4a3fd2; padding: 4px;");
+      prettyPrint("info", `Chunk: ${chunk.records}.`);
 
       next();
     },
     onComplete: (): void => {
-      console.log("thank you for importing");
+      prettyPrint("info", "Thank you for importing!");
     },
     onError: ({ error }): void => {
-      console.error(`%c⥤ ${error.userMessage}`, "color: red; padding: 4px;");
+      prettyPrint("error", `${error.userMessage}`);
     },
   });
 };
